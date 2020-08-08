@@ -64,7 +64,7 @@
         let slideinterval;
         const nextslide=()=>{
             // let slide=document.querySelectorAll('.slide');
-            console.log(slide);
+            // console.log(slide);
             const current=document.querySelector('.current');
             current.classList.remove('current');
             if(current.nextElementSibling)
@@ -73,12 +73,11 @@
             }
             else
             {
-                slide[0].classList.add('current')
+                slide[0].classList.add('current');
             }
-            setTimeout(()=>
-            current.classList.remove('current'))
+            setTimeout(()=>current.classList.remove('current'));
 
-        }
+        };
         const prevslide=()=>{
             // let slide=document.querySelector('.slide');
             const current=document.querySelector('.current');
@@ -89,22 +88,23 @@
             }
             else
             {
-                slide[5].classList.add('current')
+                slide[slide.length-1].classList.add('current');
             }
-            setTimeout(()=>
-            current.classList.remove('current'))
+            setTimeout(()=>current.classList.remove('current'));
 
-        }
-        next.addEventListener('click',e=>{nextslide()
-        if(auto){
-            clearInterval=(slideinterval)
-            setInterval(nextslide, slideinterval);
-        }
-        });
-        prev.addEventListener('click',e=>{prevslide()
+        };
+        next.addEventListener('click',e => {
+        nextslide();
         if(auto){
             clearInterval(slideinterval);
-            setInterval(prevslide, slideinterval);
+            slideinterval=setInterval(nextslide, intervaltime);
+        }
+        });
+        prev.addEventListener('click',e=>{
+            prevslide();
+        if(auto){
+            clearInterval(slideinterval);
+            slideinterval=setInterval(nextslide, intervaltime);
         }
         });
         if(auto){
