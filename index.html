@@ -1,0 +1,115 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <link
+      rel="stylesheet"
+      href="https://use.fontawesome.com/releases/v5.7.2/css/all.css"
+      integrity="sha384-fnmOCqbTlWIlj8LyTjo7mOUStjsKC4pOpQbqyi7RrhN7udi9RwhKkMHpvLbHG9Sr"
+      crossorigin="anonymous"
+    />
+    <link rel="stylesheet" href="style.css" />
+</head>
+<body>
+    <div class="container">
+        <div class="slide current">
+            <div class="content">
+                <h1>Slide one</h1>
+                <p>Lorem ipsum dolor sit amet consectetur, adipisicing elit. Doloremque odit aliquam totam. Reprehenderit, odio reiciendis.</p>
+            </div>
+        </div>
+        <div class="slide ">
+            <div class="content">
+                <h1>Slide two</h1>
+                <p>Lorem ipsum dolor sit amet consectetur, adipisicing elit. Doloremque odit aliquam totam. Reprehenderit, odio reiciendis.</p>
+            </div>
+        </div>
+        <div class="slide">
+            <div class="content">
+                <h1>Slide three</h1>
+                <p>Lorem ipsum dolor sit amet consectetur, adipisicing elit. Doloremque odit aliquam totam. Reprehenderit, odio reiciendis.</p>
+            </div>
+        </div>
+        <div class="slide">
+            <div class="content">
+                <h1>Slide four</h1>
+                <p>Lorem ipsum dolor sit amet consectetur, adipisicing elit. Doloremque odit aliquam totam. Reprehenderit, odio reiciendis.</p>
+            </div>
+        </div>
+        <div class="slide">
+            <div class="content">
+                <h1>Slide five</h1>
+                <p>Lorem ipsum dolor sit amet consectetur, adipisicing elit. Doloremque odit aliquam totam. Reprehenderit, odio reiciendis.</p>
+            </div>
+        </div>
+        <div class="slide">
+            <div class="content">
+                <h1>Slide six</h1>
+                <p>Lorem ipsum dolor sit amet consectetur, adipisicing elit. Doloremque odit aliquam totam. Reprehenderit, odio reiciendis.</p>
+            </div>
+        </div>
+    </div>
+    <div class="buttons">
+        <button id="next"><i class="fas fa-arrow-right"></i></button>
+        <button id="prev"><i class="fas fa-arrow-left"></i></button>
+    </div>
+    <script>
+        let slide=document.querySelectorAll('.slide');
+        let next=document.querySelector('#next');
+        let prev=document.querySelector('#prev');
+        const auto=true;
+        const intervaltime=5000;
+        let slideinterval;
+        const nextslide=()=>{
+            // let slide=document.querySelectorAll('.slide');
+            console.log(slide);
+            const current=document.querySelector('.current');
+            current.classList.remove('current');
+            if(current.nextElementSibling)
+            {
+            current.nextElementSibling.classList.add('current');
+            }
+            else
+            {
+                slide[0].classList.add('current')
+            }
+            setTimeout(()=>
+            current.classList.remove('current'))
+
+        }
+        const prevslide=()=>{
+            // let slide=document.querySelector('.slide');
+            const current=document.querySelector('.current');
+            current.classList.remove('current');
+            if(current.previousElementSibling)
+            {
+            current.previousElementSibling.classList.add('current');
+            }
+            else
+            {
+                slide[5].classList.add('current')
+            }
+            setTimeout(()=>
+            current.classList.remove('current'))
+
+        }
+        next.addEventListener('click',e=>{nextslide()
+        if(auto){
+            clearInterval=(slideinterval)
+            setInterval(nextslide, slideinterval);
+        }
+        });
+        prev.addEventListener('click',e=>{prevslide()
+        if(auto){
+            clearInterval(slideinterval);
+            setInterval(prevslide, slideinterval);
+        }
+        });
+        if(auto){
+            slideinterval=setInterval(nextslide,intervaltime)
+        }
+    </script>
+</body>
+</html>
